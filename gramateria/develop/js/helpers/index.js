@@ -2,7 +2,7 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { exportTemplate } from '../config/exportTemplate';
 import { Notyf } from 'notyf';
-
+import axios from "axios";
 const msg = new Notyf({
     position:{
         x:'center',
@@ -49,11 +49,24 @@ const buildZipFolder = (data) => {
 
 export const exportZip = (data) => {
     let zip = buildZipFolder(data)
-    zip.generateAsync({ type: "blob" })
-        .then(function (content) {
-            let fileName = 'gram-'+Date.now() + '-export.zip';
-            saveAs(content, fileName);
-        });
+    const payload ={
+        file: zip,
+        merchantId: "A1"
+    }
+    axios.post("http://10.77.18.120:5000/getdata", payload,{
+    headers: {
+        'content-type': 'multipart/form-data'
+    }
+    })
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => console.log(err))
+    // zip.generateAsync({ type: "blob" })
+    //     .then(function (content) {
+    //         let fileName = 'gram-'+Date.now() + '-export.zip';
+    //         saveAs(content, fileName);
+    //     });
 }
 
 export const existingSites = () =>{

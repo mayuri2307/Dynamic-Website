@@ -1,1 +1,30 @@
-window.addEventListener("DOMContentLoaded",(()=>{let e=document.querySelectorAll('a[href^="#"]');var o;(o=e)&&o.forEach((e=>{e.addEventListener("click",(o=>{if(!e.href.includes("#"))return e.target?void window.open(e.href,"_blank"):void(window.location.href=e.href);if(o.preventDefault(),!e.hash.substring(1))return;let t=document.querySelector("section#"+e.hash.substring(1)).offsetTop;window.scrollTo({top:t-100,behavior:"smooth"})}))}))}));
+window.addEventListener('DOMContentLoaded', () => {
+
+/*----------------------------------
+Smooth scroll to sections
+------------------------------------*/
+let allAnchors = document.querySelectorAll('a[href^="#"]');
+const listenAllA = (alllinks) => {
+  if (!alllinks) return;
+  alllinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      if(!link.href.includes('#')){
+          if(link.target){
+            window.open(link.href,'_blank');
+            return;
+          }
+         window.location.href = link.href;
+         return;
+      }
+      e.preventDefault();
+      if (!link.hash.substring(1)) return;
+      const targetSection = document.querySelector('section#' + link.hash.substring(1));
+      let goTo = targetSection.offsetTop;
+      window.scrollTo({ top: goTo - 100, behavior: 'smooth' });
+    });
+  })
+}
+
+listenAllA(allAnchors);
+
+})

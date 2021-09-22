@@ -54,7 +54,7 @@
       "installerHeaderIcon": "icons/icon.ico",
       "deleteAppDataOnUninstall": true
     },
-    "files":[
+    "files": [
       "*.js",
       "build",
       "node_modules"
@@ -64,13 +64,15 @@
   "devDependencies": {
     "asar": "^0.14.6",
     "electron": "^9.4.0",
+    "electron-builder": "~22.10.5",
     "resolve-url-loader": "^4.0.0",
     "sass": "^1.35.2",
-    "sass-loader": "^12.1.0",
-    "electron-builder": "^22.10.5"
+    "sass-loader": "^12.1.0"
   },
   "dependencies": {
+    "axios": "^0.21.4",
     "file-saver": "^2.0.5",
+    "fs": "^0.0.1-security",
     "jszip": "^3.6.0",
     "laravel-mix": "^6.0.25",
     "notyf": "^3.10.0"
